@@ -53,6 +53,9 @@ export const Navigation = () => {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger>
                     <Button
+                        // SheetTrigger renders a button by default, so to prevent
+                        // Hydration issues we must use asChild here.
+                        asChild
                         variant="outline"
                         size="sm"
                         className="font-normal bg-white/10 hover:bg-white/20 
