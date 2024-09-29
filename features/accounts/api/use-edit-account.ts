@@ -18,10 +18,11 @@ export const useEditAccount = (id?: string) => {
         RequestType
     >({
         mutationFn: async (json) => {
+            // It's okay if the name is the same
             const response = await client.api.accounts[":id"]["$patch"]({
                  json,
                  param: { id }   
-                })
+            })
 
             return await response.json()
         },

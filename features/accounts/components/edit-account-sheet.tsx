@@ -96,7 +96,7 @@ export const EditAccountSheet = () => {
                             id={id}
                             onSubmit={onSubmit}
                             disabled={isPending}
-                            defaultValues={ defaultValues }
+                            defaultValues={defaultValues}
                             onDelete={onDelete}
                         />
                     )}
