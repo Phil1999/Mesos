@@ -94,7 +94,7 @@ export function DataTable<TData, TValue>({
             variant="outline"
             className="ml-auto font-normal text-xs"
             onClick={async () => {
-              const ok = await confirm()
+              const ok = await confirm() // Trigger the confirmation dialog and wait for user input
 
               if (ok) {
                 onDelete(table.getFilteredSelectedRowModel().rows)
