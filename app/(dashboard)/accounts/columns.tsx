@@ -3,6 +3,7 @@
 import { InferResponseType } from "hono"
 import { client } from "@/lib/hono"
 import { Button } from "@/components/ui/button"
+import { Actions } from "./actions"
 
 
 import { ColumnDef } from "@tanstack/react-table"
@@ -46,5 +47,9 @@ export const columns: ColumnDef<ResponseType>[] = [
           </Button>
         )
     }
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <Actions id={row.original.id} />
   },
 ]
