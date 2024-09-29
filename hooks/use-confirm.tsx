@@ -66,7 +66,12 @@ export const useConfirm = (
      * It shows the dialog if 'promise' is not null (meaning the dialog has been triggered).
      */
     const ConfirmationDialog = () => (
-        <Dialog open={promise !== null}>
+        <Dialog
+            open={promise !== null}
+            onOpenChange={(isOpen) => {
+                if (!isOpen) handleClose() // Close the dialog if user clicks "X" button.
+            }}
+        >
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>
