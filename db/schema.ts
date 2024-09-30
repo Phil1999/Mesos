@@ -11,3 +11,4 @@ export const accounts = pgTable("accounts", {
 
 export const insertAccountSchema = createInsertSchema(accounts)
 
+

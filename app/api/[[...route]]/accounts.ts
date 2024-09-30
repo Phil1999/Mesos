@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { Hono } from "hono"
-import { eq, and, inArray } from "drizzle-orm"
+import { eq, and, inArray, ne } from "drizzle-orm"
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth"
 import { zValidator } from "@hono/zod-validator"
 import { createId } from "@paralleldrive/cuid2"
@@ -168,6 +168,25 @@ const app = new Hono()
 
             if (!auth?.userId) {
                 return c.json({ error: "Unauthorized"}, 401)
+            }
+
+            // Check for duplicate account name for same user,
+            // excluding the current account being updated.
+
+            const duplicateAccount = await db
+                .select({ id: accounts.id })
+                .from(accounts)
+                .where(
+                    and(
+                        eq(accounts.userId, auth.userId),
+                        eq(accounts.name, values.name),
+                        ne(accounts.id, id) // Make sure its not current account
+                    )
+                )
+                .limit(1)
+
+            if (duplicateAccount.length > 0) {
+                return c.json({ error: "An account with this name already exists"}, 400)
             }
 
             const [data] = await db

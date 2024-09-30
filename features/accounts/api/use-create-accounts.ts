@@ -8,10 +8,6 @@ import { client } from "@/lib/hono";
 type ResponseType = InferResponseType<typeof client.api.accounts.$post>
 type RequestType = InferRequestType<typeof client.api.accounts.$post>["json"]
 
-// Define the possible response types from the API
-type ApiResponse = 
-  | { error: string } 
-  | { data: { id: string; name: string; userId: string } };
 
 export const useCreateAccount = () => {
     const queryClient = useQueryClient()
@@ -25,7 +21,7 @@ export const useCreateAccount = () => {
             const response = await client.api.accounts.$post({ json })
 
             
-            const responseData: ApiResponse = await response.json()
+            const responseData = await response.json()
 
             // Check if the response contains an error
             if (!response.ok || 'error' in responseData) {

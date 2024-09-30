@@ -18,13 +18,22 @@ export const useEditAccount = (id?: string) => {
         RequestType
     >({
         mutationFn: async (json) => {
-            // It's okay if the name is the same
             const response = await client.api.accounts[":id"]["$patch"]({
                  json,
                  param: { id }   
             })
 
-            return await response.json()
+            const responseData = await response.json();
+
+            if (!response.ok || 'error' in responseData) {
+                // Narrow down type for TypeScript
+                if ('error' in responseData) {
+                    throw new Error(responseData.error || "Failed to edit account");
+                }
+            }
+
+
+            return responseData
         },
         onSuccess: () => {
             toast.success("Account updated")
@@ -34,7 +43,12 @@ export const useEditAccount = (id?: string) => {
             // TODO: need to invalidate summary/transactions
         },
         onError: (error: Error) => {
-            toast.error("Failed to edit account")
+            // We want to prevent duplicate names
+            if (error.message.includes("An account with this name already exists")) {
+                toast.error("Account with this name already exists. Please choose a different name.");
+            } else {
+                toast.error("Failed to edit account")
+            }
         },
     })
 
