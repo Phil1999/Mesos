@@ -11,6 +11,14 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+			halloween: {
+				orange: '#FF6F61',  // Pumpkin Orange
+				purple: '#6B5B95',  // Eerie Purple
+				black: '#1A1A1D',   // Spooky Black
+				white: '#F2F2F2',   // Ghostly White
+				gray: '#B2B2B2',    // Misty Gray
+				midnight: '#282c40' // Midnight Blue
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

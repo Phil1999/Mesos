@@ -25,7 +25,7 @@ export default function Page() {
                     </Loader2>
                 </ClerkLoading>
             </div>
-            <div className="h-full bg-blue-600 hidden lg:flex items-center justify-center">
+            <div className="h-full bg-halloween-midnight hidden lg:flex items-center justify-center">
                 <Image src="/logo.png" height={100} width={100} alt="Logo" />
 
             </div>

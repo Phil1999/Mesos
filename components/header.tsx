@@ -9,7 +9,7 @@ import { WelcomeMsg } from "@/components/welcome-msg"
 
 export const Header = () => {
     return (
-        <header className="bg-gradient-to-b from-blue-700 to-blue-500
+        <header className="bg-gradient-to-b from-orange-600 to-orange-400
         px-4 py-8 lg:px-14 pb-36">
             <div className="max-w-screen-2xl mx-auto">
                 <div className="w-full flex items-center justify-between mb-14">
@@ -22,7 +22,7 @@ export const Header = () => {
                     </ClerkLoaded>
 
                     <ClerkLoading>
-                        <Loader2 className="size-8 animate-spin text-slate-400"></Loader2>
+                        <Loader2 className="size-8 animate-spin text-halloween-gray"></Loader2>
                     </ClerkLoading>
                     
                 </div>
