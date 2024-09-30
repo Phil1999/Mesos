@@ -28,7 +28,6 @@ export const useEditTransaction = (id?: string) => {
         },
         onSuccess: () => {
             toast.success("Transaction updated")
-            // TODO determine if we want to invalidate specific queries with param.
             queryClient.invalidateQueries({ queryKey: ["transactions", { id }] })
             queryClient.invalidateQueries({ queryKey: ["transactions"] })
             // TODO: need to invalidate summary
