@@ -5,11 +5,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 
 // We have to chain with this syntax instead of just .$post
-type ResponseType = InferResponseType<typeof client.api.accounts["bulk-delete"]["$post"]>
-type RequestType = InferRequestType<typeof client.api.accounts["bulk-delete"]["$post"]>["json"]
+type ResponseType = InferResponseType<typeof client.api.transactions["bulk-delete"]["$post"]>
+type RequestType = InferRequestType<typeof client.api.transactions["bulk-delete"]["$post"]>["json"]
 
 
-export const useBulkDeleteAccounts = () => {
+export const useBulkDeleteTransactions = () => {
     const queryClient = useQueryClient()
 
     const mutation = useMutation<
@@ -18,17 +18,16 @@ export const useBulkDeleteAccounts = () => {
         RequestType
     >({
         mutationFn: async (json) => {
-            const response = await client.api.accounts["bulk-delete"]["$post"]({ json })
+            const response = await client.api.transactions["bulk-delete"]["$post"]({ json })
             return await response.json()
         },
         onSuccess: () => {
-            toast.success("Accounts deleted")
-            // Allows us to refetch accounts after a new one is created
-            queryClient.invalidateQueries({ queryKey: ["accounts"] })
+            toast.success("Transactions deleted")
+            queryClient.invalidateQueries({ queryKey: ["transactions"] })
             // TODO: also invalidate summary later
         },
         onError: () => {
-            toast.error("Failed to delete accounts")
+            toast.error("Failed to delete transactions")
         },
     })
 
