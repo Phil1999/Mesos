@@ -15,6 +15,13 @@
       "when": 1727655533761,
       "tag": "0001_illegal_mad_thinker",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1727726763734,
+      "tag": "0002_soft_zombie",
+      "breakpoints": true
     }
   ]
 }
