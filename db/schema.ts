@@ -35,7 +35,7 @@ export const categoriesRelation = relations(categories, ({ many }) => ({
     transactions: many(transactions),
 }))
 
-export const insertCategorySchema = createInsertSchema(accounts)
+export const insertCategorySchema = createInsertSchema(categories)
 
 export const transactions = pgTable("transactions", {
     id: text("id").primaryKey(),
@@ -69,11 +69,12 @@ export const transactionsRelations = relations(transactions, ({ one }) => ({
         references: [accounts.id],
     }),
     categories: one(categories, {
-        fields: [transactions.accountId],
+        fields: [transactions.categoryId],
         references: [categories.id],
     })
 }))
 
 export const insertTransactionSchema = createInsertSchema(transactions, {
     date: z.coerce.date(),
+    categoryId: z.string().optional(),
 })
