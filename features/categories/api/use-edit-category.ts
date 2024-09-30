@@ -5,11 +5,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 
 
-type ResponseType = InferResponseType<typeof client.api.accounts[":id"]["$patch"]>
-type RequestType = InferRequestType<typeof client.api.accounts[":id"]["$patch"]>["json"]
+type ResponseType = InferResponseType<typeof client.api.categories[":id"]["$patch"]>
+type RequestType = InferRequestType<typeof client.api.categories[":id"]["$patch"]>["json"]
 
 
-export const useEditAccount = (id?: string) => {
+export const useEditCategory = (id?: string) => {
     const queryClient = useQueryClient()
 
     const mutation = useMutation<
@@ -18,7 +18,7 @@ export const useEditAccount = (id?: string) => {
         RequestType
     >({
         mutationFn: async (json) => {
-            const response = await client.api.accounts[":id"]["$patch"]({
+            const response = await client.api.categories[":id"]["$patch"]({
                  json,
                  param: { id }   
             })
@@ -36,18 +36,17 @@ export const useEditAccount = (id?: string) => {
             return responseData
         },
         onSuccess: () => {
-            toast.success("Account updated")
+            toast.success("Category updated")
             
-            queryClient.invalidateQueries({ queryKey: ["accounts", { id }] })
-            queryClient.invalidateQueries({ queryKey: ["accounts"] })
-            // TODO: need to invalidate summary/transactions
+            queryClient.invalidateQueries({ queryKey: ["categories", { id }] })
+            queryClient.invalidateQueries({ queryKey: ["categories"] })
         },
         onError: (error: Error) => {
             // We want to prevent duplicate names
-            if (error.message.includes("An account with this name already exists")) {
-                toast.error("Account with this name already exists. Please choose a different name.");
+            if (error.message.includes("A category with this name already exists")) {
+                toast.error("Category with this name already exists. Please choose a different name.");
             } else {
-                toast.error("Failed to edit account")
+                toast.error("Failed to edit category")
             }
         },
     })

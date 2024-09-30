@@ -11,4 +11,12 @@ export const accounts = pgTable("accounts", {
 
 export const insertAccountSchema = createInsertSchema(accounts)
 
+export const categories = pgTable("categories", {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    userId: text("user_id").notNull(),
+}, (table) => ({
+    uniqueUserCategoryName: uniqueIndex("unique_user_category_name").on(table.userId, table.name)
+}))
 
+export const insertCategorySchema = createInsertSchema(accounts)
