@@ -40,6 +40,8 @@ export const useEditCategory = (id?: string) => {
             
             queryClient.invalidateQueries({ queryKey: ["categories", { id }] })
             queryClient.invalidateQueries({ queryKey: ["categories"] })
+            // We invalidate transaction because we can edit it in the transaction page as well.
+            queryClient.invalidateQueries({ queryKey: ["transactions"] })
         },
         onError: (error: Error) => {
             // We want to prevent duplicate names

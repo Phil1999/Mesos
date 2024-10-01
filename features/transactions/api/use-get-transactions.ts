@@ -2,8 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
 import { client } from "@/lib/hono";
+import { transactions } from "@/db/schema";
+import { convertAmountFromMiliunits } from "@/lib/utils";
 
 export const useGetTransactions = () => {
+    // Note: in our backend we default to retrieving from the last 30d.
     const params = useSearchParams()
     const from = params.get("from") || ""
     const to = params.get("to") || ""
@@ -28,8 +31,12 @@ export const useGetTransactions = () => {
             }
 
             const { data } = await response.json()
-            return data
-        }
+            // Since in our backend, we store amounts in miliunits, we can format it here.
+            return data.map((transaction) => ({
+                ...transaction,
+                amount: convertAmountFromMiliunits(transaction.amount),
+            }))
+        },
     })
 
     return query

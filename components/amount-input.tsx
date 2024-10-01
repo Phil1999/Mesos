@@ -19,6 +19,7 @@ type Props = {
     disabled?: boolean
 }
 
+//TODO seems like a ref issue here..?
 export const AmountInput = ({
     value,
     onChange,

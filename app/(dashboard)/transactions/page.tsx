@@ -4,7 +4,7 @@ import { Loader2, Plus } from "lucide-react"
 
 import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction"
 import { useGetTransactions } from "@/features/transactions/api/use-get-transactions"
-import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete-accounts"
+import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -20,11 +20,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 
 
-
-
 const TransactionsPage = () => {
     const newTransaction = useNewTransaction()
-    const deleteAccounts = useBulkDeleteAccounts()
+    const deleteAccounts = useBulkDeleteTransactions()
     const transactionsQuery = useGetTransactions()
     const transactions = transactionsQuery.data || []
 
@@ -54,7 +52,7 @@ const TransactionsPage = () => {
             <Card className="border-none drop-shadow-sm">
                 <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
                     <CardTitle className="text-xl line-clamp-1">
-                        Transactions History
+                        Transactions History 
                     </CardTitle>
                     <Button onClick={newTransaction.onOpen} size="sm">
                         <Plus className="size-4 mr-2"/>
@@ -64,7 +62,7 @@ const TransactionsPage = () => {
 
                 <CardContent>
                     <DataTable
-                        filterKey="name"
+                        filterKey="payee"
                         columns={columns}
                         data={transactions}
                         onDelete={(row) => {
