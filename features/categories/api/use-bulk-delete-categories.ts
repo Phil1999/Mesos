@@ -25,6 +25,9 @@ export const useBulkDeleteCategories = () => {
             toast.success("Categories deleted")
             // Allows us to refetch categories after a new one is created
             queryClient.invalidateQueries({ queryKey: ["categories"] })
+
+            // We invalidate transaction because we can delete it in the transaction page as well.
+            queryClient.invalidateQueries({ queryKey: ["transactions"] })
         },
         onError: () => {
             toast.error("Failed to delete categories")

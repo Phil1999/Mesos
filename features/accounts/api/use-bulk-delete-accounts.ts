@@ -26,6 +26,8 @@ export const useBulkDeleteAccounts = () => {
             // Allows us to refetch accounts after a new one is created
             queryClient.invalidateQueries({ queryKey: ["accounts"] })
             // TODO: also invalidate summary later
+            // We invalidate transaction because we can delete it in the transaction page as well.
+            queryClient.invalidateQueries({ queryKey: ["transactions"] })
         },
         onError: () => {
             toast.error("Failed to delete accounts")
