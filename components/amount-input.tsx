@@ -1,3 +1,4 @@
+import * as React from 'react'
 import CurrencyInput from "react-currency-input-field"
 import { Info, MinusCircle, PlusCircle } from "lucide-react"
 
@@ -20,12 +21,8 @@ type Props = {
 }
 
 //TODO seems like a ref issue here..?
-export const AmountInput = ({
-    value,
-    onChange,
-    placeholder,
-    disabled
-}: Props) => {
+export const AmountInput = React.forwardRef<HTMLInputElement, Props>(
+    ({ value, onChange, placeholder, disabled }, ref) => {
 
     const parsedValue = parseFloat(value)
     const isIncome = parsedValue > 0
@@ -70,6 +67,7 @@ export const AmountInput = ({
                 </Tooltip>
             </TooltipProvider>
             <CurrencyInput
+                ref={ref}
                 prefix="$"
                 className="
                     pl-10 flex h-10 w-full rounded-md border border-input bg-background px-3
@@ -92,5 +90,6 @@ export const AmountInput = ({
                 {isExpense && "This will count as expense"}
             </p>
         </div>
-    )
-}
+        )
+    }
+)
