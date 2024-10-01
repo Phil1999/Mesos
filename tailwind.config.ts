@@ -17,7 +17,12 @@ const config: Config = {
 				black: '#1A1A1D',   // Spooky Black
 				white: '#F2F2F2',   // Ghostly White
 				gray: '#B2B2B2',    // Misty Gray
-				midnight: '#282c40' // Midnight Blue
+				midnight: '#282c40', // Midnight Blue
+				yellow: '#FFD700',  // Ghastly Yellow for text
+            	green: '#ADFF2F',   // Ectoplasm Green for accents
+            	red: '#FF4500',     // Blood Red for warnings/buttons
+            	bone: '#F2F2F2',    // Bone White for subtle text
+            	teal: '#008080',    // Phantom Teal for background accents
 			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
