@@ -18,6 +18,8 @@ import {
 
 const formSchema = insertAccountSchema.pick({
     name: true,
+}).extend({
+    name: z.string().min(1, "Name is required"),
 })
 
 type FormValues = z.input<typeof formSchema>
@@ -62,7 +64,7 @@ export const AccountForm = ({
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>
-                                Name
+                                *Name
                             </FormLabel>
                             <FormControl>
                                 <Input
