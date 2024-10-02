@@ -4,11 +4,7 @@
  
 **Mesos** is a financial dashboard application that offers users a comprehensive overview of their transactions, income, and expenses. Built with **Next.js**, **TypeScript**, and **Tailwind CSS**, it features dynamic charts, account insights, and a customizable date range selector to provide detailed financial reports.
 
-  
-
-(dashboard screenshot here)
-
-  
+![Dashboard](https://github.com/user-attachments/assets/56f6f621-3ee8-45d5-af0b-03eac553420f)
 
 ## Features
 
@@ -92,4 +88,6 @@ npm run db:studio # View the database locally at https://local.drizzle.studio
 ```
 Screenshots
 
-(images of gui)
+![Transaction Page](https://github.com/user-attachments/assets/bdd2e6ae-131e-4cf0-9c5c-38811456d24c)
+
+![Mobile Dashboard](https://github.com/user-attachments/assets/28fa2a34-a692-491f-9532-2b7c954df6c6)
