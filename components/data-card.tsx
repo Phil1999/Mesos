@@ -18,9 +18,9 @@ const boxVariant = cva(
         variants: {
             variant: {
                 default: "bg-halloween-midnight/20",
-                success: "bg-halloween-green/20",
+                success: "bg-halloween-green/40",
                 danger: "bg-halloween-red/20",
-                warning: "bg-halloween-yellow/20",
+                warning: "bg-halloween-haunted_gold/50",
             }
         },
         defaultVariants: {
@@ -35,9 +35,9 @@ const iconVariant = cva(
         variants: {
             variant: {
                 default: "fill-halloween-midnight",
-                success: "fill-halloween-green",
+                success: "fill-halloween-darker_green",
                 danger: "fill-halloween-red",
-                warning: "fill-halloween-yellow",
+                warning: "fill-halloween-haunted_gold",
             }
         },
         defaultVariants: {
@@ -97,7 +97,7 @@ export const DataCard = ({
                 </h1>
                 <p className={cn(
                     "text-muted-foreground text-sm line-clamp-1",
-                    percentageChange > 0 && "text-halloween-green",
+                    percentageChange > 0 && "text-halloween-darker_green",
                     percentageChange < 0 && "text-halloween-red",
                 )}>
                   {formatPercentage(percentageChange, { addPrefix: true})} from last period.  
