@@ -12,8 +12,22 @@ export const UploadButton = ({ onUpload }: Props) => {
 
     // Optionally, we can add a paywall here if we decide to make a premium option.
 
+    // Filter out empty row or whitespace
+    const isRowEmpty = (row: string[]) => {
+        return row.every(cell => !cell.trim());
+    };
+
+    const handleUploadAccepted = (results: any) => {
+        const filteredResults = {
+            ...results,
+            data: results.data.filter((row: string[]) => !isRowEmpty(row))
+        };
+        onUpload(filteredResults);
+    };
+
+
     return (
-        <CSVReader onUploadAccepted={onUpload}>
+        <CSVReader onUploadAccepted={handleUploadAccepted}>
             {({ getRootProps }: any) => (
                 <Button
                     size="sm"

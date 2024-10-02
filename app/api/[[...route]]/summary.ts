@@ -88,9 +88,15 @@ const app = new Hono()
             )
             const [lastPeriod] = await fetchFinancialData(
                 auth.userId,
-                startDate,
-                endDate, 
+                lastPeriodStart,
+                lastPeriodEnd, 
             )
+            // TODO it's possible to have no data for last period. Therefore, we should
+            // let user know on frontend.
+            console.log("Current Period Income:", currentPeriod.income);
+            console.log("Last Period Income:", lastPeriod.income);
+            console.log("Current Period Expenses:", currentPeriod.expenses);
+            console.log("Last Period Expenses:", lastPeriod.expenses);
 
             const incomeChange = calculatePercentageChange(
                 currentPeriod.income,
