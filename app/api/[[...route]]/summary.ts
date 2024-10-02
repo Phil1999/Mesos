@@ -3,7 +3,7 @@ import { accounts, categories, transactions } from "@/db/schema";
 import { calculatePercentageChange, fillMissingDays } from "@/lib/utils";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
-import { subDays, parse, differenceInDays } from "date-fns";
+import { subDays, parseISO, differenceInDays } from "date-fns";
 import { and, eq, gte, lte, sql, sum, lt, desc } from "drizzle-orm";
 import { Hono } from "hono";
 import { z } from "zod";
@@ -32,12 +32,13 @@ const app = new Hono()
             const defaultTo = new Date()
             const defaultFrom = subDays(defaultTo, 30)
 
+            // We should parseISO to maintain timezones consistency between frontend/backend
             const startDate = from
-                ? parse(from, "yyyy-MM-dd", new Date())
+                ? parseISO(from)
                 : defaultFrom
 
                 const endDate = to
-                ? parse(to, "yyyy-MM-dd", new Date())
+                ? parseISO(to)
                 : defaultTo
 
             const periodLength = differenceInDays(endDate, startDate) + 1 // +1 for offset

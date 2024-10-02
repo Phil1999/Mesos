@@ -7,9 +7,9 @@ import { convertAmountFromMiliunits } from "@/lib/utils";
 export const useGetSummary = () => {
     // Note: in our backend we default to retrieving from the last 30d.
     const params = useSearchParams()
-    const from = params.get("from") || ""
-    const to = params.get("to") || ""
-    const accountId = params.get("accountId") || ""
+    const from = params.get("from") || undefined
+    const to = params.get("to") || undefined
+    const accountId = params.get("accountId") || undefined
 
     const query = useQuery({
         // We need these params in the query key because different

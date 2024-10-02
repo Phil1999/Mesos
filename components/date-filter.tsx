@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { format, subDays, parseISO } from "date-fns"
+import { format, subDays, parseISO, startOfDay, endOfDay } from "date-fns"
 import { DateRange } from "react-day-picker"
 import { ChevronDown } from "lucide-react"
 import qs from "query-string"
@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/popover"
 
 
-// Seems to be a bug where I'm getting the incorrect dates..
 export const DateFilter = () => {
     const router = useRouter()
     const pathname = usePathname()
@@ -49,8 +48,8 @@ export const DateFilter = () => {
 
     const pushToUrl = (dateRange: DateRange | undefined) => {
         const query = {
-            from: format(dateRange?.from || defaultFrom, "yyyy-MM-dd"),
-            to: format(dateRange?.to || defaultTo, "yyyy-MM-dd"),
+            from: dateRange?.from ? format(startOfDay(dateRange.from), "yyyy-MM-dd") : undefined,
+            to: dateRange?.to ? format(endOfDay(dateRange.to), "yyyy-MM-dd") : undefined,
             accountId,
         }
         
@@ -72,6 +71,7 @@ export const DateFilter = () => {
     const handleSelect = (newDate: DateRange | undefined) => {
         setDate(newDate)
         
+        // Need both a from and to to be able to set new range.
         if (newDate?.from && newDate?.to) {
             setRangeUnset(false)
         } else {
@@ -79,8 +79,6 @@ export const DateFilter = () => {
         }
     }
 
-    console.log(date?.from)
-    console.log(date?.from)
 
     return (
         <Popover>
