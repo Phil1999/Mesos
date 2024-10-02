@@ -12,6 +12,7 @@ import {
 
 
 type Props = {
+    id?: string
     value: string
     // We deal with strings here because in JS, currencies exist as a
     // string and that is also how our currency-input-field handles currencies.
@@ -20,9 +21,9 @@ type Props = {
     disabled?: boolean
 }
 
-//TODO seems like a ref issue here..?
+
 export const AmountInput = React.forwardRef<HTMLInputElement, Props>(
-    ({ value, onChange, placeholder, disabled }, ref) => {
+    ({ id, value, onChange, placeholder, disabled }, ref) => {
 
     const parsedValue = parseFloat(value)
     const isIncome = parsedValue > 0
@@ -68,6 +69,7 @@ export const AmountInput = React.forwardRef<HTMLInputElement, Props>(
             </TooltipProvider>
             <CurrencyInput
                 ref={ref}
+                id={id}
                 prefix="$"
                 className="
                     pl-10 flex h-10 w-full rounded-md border border-input bg-background px-3

@@ -95,11 +95,12 @@ export const TransactionForm = ({
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>
+                            <FormLabel htmlFor="date">
                                 *Date
                             </FormLabel>
                             <FormControl>
                                 <DatePicker
+                                    id="date"
                                     value={field.value}
                                     onChange={field.onChange}
                                     disabled={disabled}
@@ -115,11 +116,12 @@ export const TransactionForm = ({
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>
+                            <FormLabel htmlFor="accountId">
                                 *Account
                             </FormLabel>
                             <FormControl>
                                 <Select
+                                    id="accountId"
                                     placeholder="Select an account"
                                     options={accountOptions}
                                     onCreate={onCreateAccount}
@@ -138,11 +140,12 @@ export const TransactionForm = ({
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>
+                            <FormLabel htmlFor="categoryId">
                                 Category
                             </FormLabel>
                             <FormControl>
                                 <Select
+                                    id="categoryId"
                                     placeholder="Select a category"
                                     options={categoryOptions}
                                     onCreate={onCreateCategory}
@@ -161,11 +164,12 @@ export const TransactionForm = ({
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>
+                            <FormLabel htmlFor="payee">
                                 *Payee
                             </FormLabel>
                             <FormControl>
                                 <Input
+                                    id="payee"
                                     disabled={disabled}
                                     placeholder="Add a payee"
                                     {...field}
@@ -182,11 +186,12 @@ export const TransactionForm = ({
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>
+                            <FormLabel htmlFor="amount">
                                 *Amount
                             </FormLabel>
                             <FormControl>
                                 <AmountInput
+                                    id="amount"
                                     {...field}
                                     disabled={disabled}
                                     placeholder="0.00"

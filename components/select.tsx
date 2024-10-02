@@ -6,6 +6,7 @@ import CreateableSelect from "react-select/creatable"
 
 
 type Props = {
+    id?: string
     onChange: (value?: string) => void
     onCreate?: (value : string) => void
     options?: { label: string; value: string }[]
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export const Select = ({
+    id,
     value,
     onChange,
     disabled,
@@ -40,6 +42,7 @@ export const Select = ({
 
     return (
         <CreateableSelect
+            inputId={id}
             placeholder={placeholder}
             className="text-sm h-10"
             styles={{

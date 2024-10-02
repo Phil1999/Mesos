@@ -15,6 +15,7 @@ import {
 
 
 type Props = {
+    id?: string
     value?: Date
     onChange?: SelectSingleEventHandler
     disabled?: boolean
@@ -22,6 +23,7 @@ type Props = {
 
 
 export const DatePicker = ({
+    id,
     value,
     onChange,
     disabled
@@ -30,6 +32,7 @@ export const DatePicker = ({
         <Popover>
             <PopoverTrigger asChild>
                 <Button
+                    id={id}
                     disabled={disabled}
                     variant="outline"
                     className={cn(
