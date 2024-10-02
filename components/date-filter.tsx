@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { format, subDays, parseISO, startOfDay, endOfDay } from "date-fns"
 import { DateRange } from "react-day-picker"
 import { ChevronDown } from "lucide-react"
@@ -79,6 +79,15 @@ export const DateFilter = () => {
         }
     }
 
+    // When moving between pages, reset the component.
+    // This fixes the issue where the component maintained its values
+    // after moving between pages.
+    // TODO: maybe better fix?
+    useEffect(() => {
+        setDate(paramState)
+        setRangeUnset(true)
+    }, [pathname])
+    
 
     return (
         <Popover>
