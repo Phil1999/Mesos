@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns"
+import { eachDayOfInterval, format, isSameDay, subDays, parseISO } from "date-fns"
+import { toZonedTime } from "date-fns-tz"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -38,6 +39,48 @@ export function formatPercentage(
   }
 
   return result
+}
+
+export function formatDateRange (period?: Period) {
+  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  function formatDate(date: string | Date | undefined): string {
+    if (!date) {
+      return "";
+    }
+
+    let zonedDate: Date;
+    if (typeof date === "string") {
+      // Assume the string is in ISO format (UTC)
+      zonedDate = toZonedTime(parseISO(date), userTimeZone);
+    } else {
+      // If it's a Date object, convert it to zoned time
+      zonedDate = toZonedTime(date, userTimeZone);
+    }
+
+    return format(zonedDate, "LLL dd, yyyy");
+  }
+
+  const now = new Date();
+  const defaultTo = now;
+  const defaultFrom = subDays(now, 30);
+
+  if (!period || (!period.from && !period.to)) {
+    return `${formatDate(defaultFrom)} - ${formatDate(defaultTo)}`;
+  }
+
+  const fromDate = formatDate(period.from);
+  const toDate = formatDate(period.to);
+
+  if (fromDate && toDate) {
+    return `${fromDate} - ${toDate}`;
+  } else if (fromDate) {
+    return fromDate;
+  } else if (toDate) {
+    return toDate;
+  }
+
+  return `${formatDate(defaultFrom)} - ${formatDate(defaultTo)}`;
 
 }
 
@@ -91,20 +134,4 @@ export function fillMissingDays(
 type Period = {
   from: string | Date | undefined,
   to: string | Date | undefined,
-}
-
-export function formatDateRange (period?: Period) {
-  const defaultTo = new Date()
-  const defaultFrom = subDays(defaultTo, 30)
-
-  if (!period?.from) {
-    return `${format(defaultFrom, "LLL dd")} - ${format(defaultTo, "LLL dd, y")}`
-  }
-
-  if (period.to) {
-    return `${format(period.from, "LLL dd")} - ${format(period.to, "LLL dd, y")}`
-  }
-
-  return format(period.from, "LLL dd, y")
-
 }
