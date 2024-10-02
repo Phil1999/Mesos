@@ -37,7 +37,7 @@ const iconVariant = cva(
                 default: "fill-halloween-midnight",
                 success: "fill-halloween-darker_green",
                 danger: "fill-halloween-red",
-                warning: "fill-halloween-haunted_gold",
+                warning: "fill-halloween-bronze_gold",
             }
         },
         defaultVariants: {

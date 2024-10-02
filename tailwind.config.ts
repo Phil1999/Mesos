@@ -20,6 +20,7 @@ const config: Config = {
 				midnight: '#282c40', // Midnight Blue
 				yellow: '#FFD700',  // Ghastly Yellow for text
 				haunted_gold: "#D4AF37", // Rich yellow
+				bronze_gold: "#CD7F32", // Darker eerie gold
             	green: '#ADFF2F',   // Ectoplasm Green for accents
 				darker_green: '#004d40', // Nightshade green
             	red: '#FF4500',     // Blood Red for warnings/buttons
