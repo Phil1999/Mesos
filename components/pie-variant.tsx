@@ -29,6 +29,11 @@ export const PieVariant = ({ data = [] }: Props) => {
                     align="right"
                     iconType="circle"
                     content={({ payload }: any) => {
+                        // Necessary check:
+                        // We have to ensure payload is udnefined or empty
+                        // Otherwise, it will hydration issues.
+                        if (!payload) return null
+
                         return (
                             <ul className="flex flex-col space-y-2">
                                 {payload.map((entry: any, index: number) => (
