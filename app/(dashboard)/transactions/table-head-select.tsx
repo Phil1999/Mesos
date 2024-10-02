@@ -22,7 +22,7 @@ type Props = {
 const options = [
     "amount",
     "payee",
-    //"notes",
+    //"notes", optional param, excluding for now.
     "date",
 ]
 

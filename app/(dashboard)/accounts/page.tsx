@@ -53,7 +53,7 @@ const AccountsPage = () => {
             <Card className="border-none drop-shadow-sm">
                 <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
                     <CardTitle className="text-xl line-clamp-1">
-                        Accounts page
+                        Accounts Page
                     </CardTitle>
                     <Button onClick={newAccount.onOpen} size="sm">
                         <Plus className="size-4 mr-2"/>
