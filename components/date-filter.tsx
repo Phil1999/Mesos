@@ -15,13 +15,15 @@ import {
 import { formatDateRange } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
-
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
     PopoverClose,
 } from "@/components/ui/popover"
+
+import { useGetSummary } from "@/features/summary/api/use-get-summary"
+import { useGetAccounts } from "@/features/accounts/api/use-get-accounts"
 
 
 export const DateFilter = () => {
@@ -45,6 +47,18 @@ export const DateFilter = () => {
     const [date, setDate] = useState<DateRange | undefined>(
         paramState
     )
+
+    // React-query does cache results so this shouldn't cause multiple requests.
+    // performance overhead should be quite minimal.
+    const {
+        isLoading: isLoadingSummary,
+    } = useGetSummary()
+    const {
+        isLoading: isLoadingAccounts,
+    } = useGetAccounts()
+    
+    const isLoading = isLoadingSummary ||
+                      isLoadingAccounts
 
     const pushToUrl = (dateRange: DateRange | undefined) => {
         const query = {
@@ -93,7 +107,7 @@ export const DateFilter = () => {
         <Popover>
             <PopoverTrigger asChild>
                 <Button
-                    disabled={false}
+                    disabled={isLoading}
                     size="sm"
                     variant="outline"
                     className="lg:w-auto w-full h-9 rounded-md px-3 font-normal bg-white/10
@@ -109,7 +123,7 @@ export const DateFilter = () => {
                 align="start"
             >
                 <Calendar
-                    disabled={false}
+                    disabled={isLoading}
                     initialFocus
                     mode="range"
                     defaultMonth={date?.from}
