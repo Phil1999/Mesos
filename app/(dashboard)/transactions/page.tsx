@@ -38,8 +38,6 @@ const INITIAL_IMPORT_RESULTS = {
 
 
 
-// TODO currently, we only show the last 30d of transactions, although we can store
-// transactions from more than that. (our endpoint returns last 30d worth)
 const TransactionsPage = () => {
     const [AccountDialog, confirm] = useSelectAccount()
     const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST)
@@ -124,7 +122,7 @@ const TransactionsPage = () => {
             <Card className="border-none drop-shadow-sm">
                 <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
                     <CardTitle className="text-xl line-clamp-1">
-                        Transactions History (Last 30d)
+                        Transactions History
                     </CardTitle>
                     <div className="flex flex-col lg:flex-row gap-y-2 items-center gap-x-2">
                         <Button

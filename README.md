@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Mesos
 
-First, run the development server:
+ 
+**Mesos** is a financial dashboard application that offers users a comprehensive overview of their transactions, income, and expenses. Built with **Next.js**, **TypeScript**, and **Tailwind CSS**, it features dynamic charts, account insights, and a customizable date range selector to provide detailed financial reports.
+
+  
+
+(dashboard screenshot here)
+
+  
+
+## Features
+
+-  **Financial Overview**: Get insights on remaining balances, income, and expenses.
+
+-  **Customizable Reports**: Select date ranges and filter by account to view detailed financial summaries.
+
+-  **Data Visualizations**: Leverage multiple graphs and charts to easily view your financial insights at a glance.
+
+-  **Secure Authentication**: Integrated with Clerk for user authentication.
+
+-  **Responsive Design**: Optimized for all screen sizes with a clean and intuitive UI.
+-  **Bulk Delete and Bulk Imports for transactions**: Easily bulk import transaction data from a .csv file and bulk delete accounts, transactions, and categories.
+
+  Note: As a default, the API only returns the last 30d of transactions if filters aren't set.
+
+## Tech Stack
+
+  -  **Frontend**: Next.js, React, TypeScript, Tailwind CSS
+
+-  **State Management**: React Query, Zustand
+
+-  **Backend**: Drizzle ORM, Hono, Neon Database (PostgreSQL), Clerk
+
+-  **Charts**: Recharts
+
+
+## Installation
+
+  
+
+1. Clone the repository:
+
+```bash
+
+git clone https://github.com/Phil1999/Mesos.git
+
+cd mesos
+```
+
+Install dependencies:
+
+  
+
+```bash
+npm install
+```
+Set up environment variables:
+Duplicate .env.example to .env.local and fill in the required fields.
+
+Run the development server:
+```bash
+npm run dev
+```
+Access the app at http://localhost:3000.
+
+  
+Scripts
+dev: Start the development server.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+build: Build the project for production.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build
+```
+start: Start the production server.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm start
+```
+Database:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:seed # optionally fill in db with seed script.
+npm run db:studio # View the database locally at https://local.drizzle.studio
+```
+Screenshots
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+(images of gui)

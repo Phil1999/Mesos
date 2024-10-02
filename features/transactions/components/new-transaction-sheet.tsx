@@ -29,9 +29,6 @@ const formSchema = insertTransactionSchema.omit({
 type FormValues = z.input<typeof formSchema>
 
 // TODO automatically selected newly created account/category. (make reusable hook?)
-// Also, since we only pull the last 30d of transactions we should consider how to 
-// handle this when the user picks a date out of that range.
-// There also seems to be a problem with incorrect use of label for form element?
 export const NewTransactionSheet = () => {
     const { isOpen, onClose } = useNewTransaction()
     const createMutation = useCreateTransaction()
