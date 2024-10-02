@@ -125,7 +125,7 @@ export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
         <Card className="border-none drop-shadow-sm">
             <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
             <CardTitle className="text-xl line-clamp-1">
-                Import Transaction
+                Import Transactions
             </CardTitle>
             <div className="flex flex-col lg:flex-row gap-y-2 items-center gap-x-2">
                 <Button
