@@ -28,6 +28,8 @@ export const useBulkDeleteCategories = () => {
 
             // We invalidate transaction because we can delete it in the transaction page as well.
             queryClient.invalidateQueries({ queryKey: ["transactions"] })
+
+            queryClient.invalidateQueries({ queryKey: ["summary"] })
         },
         onError: () => {
             toast.error("Failed to delete categories")

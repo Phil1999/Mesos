@@ -24,15 +24,16 @@ import {
 } from "@/components/ui/popover"
 
 
-// Fix mismatch seems dates are off by 1
+// Seems to be a bug where I'm getting the incorrect dates..
 export const DateFilter = () => {
-
     const router = useRouter()
     const pathname = usePathname()
     const params = useSearchParams()
     const accountId = params.get("accountId")
     const from = params.get("from") || ""
     const to = params.get("to") || ""
+
+    const [rangeUnset, setRangeUnset] = useState(true)
 
     const defaultTo = new Date()
     const defaultFrom = subDays(defaultTo, 30)
@@ -58,13 +59,28 @@ export const DateFilter = () => {
             query,
         }, { skipEmptyString: true, skipNull: true, })
 
+
         router.push(url)
     }
 
     const onReset = () => {
         setDate(undefined)
+        setRangeUnset(true)
         pushToUrl(undefined)
     }
+
+    const handleSelect = (newDate: DateRange | undefined) => {
+        setDate(newDate)
+        
+        if (newDate?.from && newDate?.to) {
+            setRangeUnset(false)
+        } else {
+            setRangeUnset(true)
+        }
+    }
+
+    console.log(date?.from)
+    console.log(date?.from)
 
     return (
         <Popover>
@@ -91,7 +107,7 @@ export const DateFilter = () => {
                     mode="range"
                     defaultMonth={date?.from}
                     selected={date}
-                    onSelect={setDate}
+                    onSelect={handleSelect}
                     numberOfMonths={2}
                 />
 
@@ -99,7 +115,7 @@ export const DateFilter = () => {
                     <PopoverClose asChild>
                         <Button
                             onClick={onReset}
-                            disabled={!date?.from || !date?.to}
+                            disabled={rangeUnset}
                             className="w-full"
                             variant="outline"
                         >
@@ -111,7 +127,7 @@ export const DateFilter = () => {
                     <PopoverClose asChild>
                         <Button
                             onClick={() => pushToUrl(date)}
-                            disabled={!date?.from || !date?.to}
+                            disabled={rangeUnset}
                             className="w-full"
                         >
                             Apply

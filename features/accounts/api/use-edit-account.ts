@@ -40,9 +40,10 @@ export const useEditAccount = (id?: string) => {
             
             queryClient.invalidateQueries({ queryKey: ["accounts", { id }] })
             queryClient.invalidateQueries({ queryKey: ["accounts"] })
-            // TODO: need to invalidate summary
+ 
             // We invalidate because we can edit our account on our transaction page.
             queryClient.invalidateQueries({ queryKey: ["transactions"] })
+            queryClient.invalidateQueries({ queryKey: ["summary"] })
         },
         onError: (error: Error) => {
             // We want to prevent duplicate names

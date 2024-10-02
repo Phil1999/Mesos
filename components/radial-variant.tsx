@@ -46,7 +46,7 @@ export const RadialVariant = ({ data = [] }: Props) => {
                     iconType="circle"
                     content={({ payload }: any) => {
                         // Necessary check:
-                        // We have to ensure payload is udnefined or empty
+                        // We have to ensure payload is undefined or empty
                         // Otherwise, it will hydration issues.
                         if (!payload) return null
 
