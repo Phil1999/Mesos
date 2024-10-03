@@ -62,7 +62,8 @@ npm run dev
 Access the app at http://localhost:3000.
 
   
-Scripts
+### Scripts
+
 dev: Start the development server.
 
 ```bash
@@ -78,7 +79,7 @@ start: Start the production server.
 ```bash
 npm start
 ```
-Database:
+database: 
 
 ```bash
 npm run db:generate
